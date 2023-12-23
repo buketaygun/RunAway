@@ -13,7 +13,7 @@ public class Player : MonoBehaviour
     public float range = 3;
     public float jumpF;
     public float gravity = -10;
-    
+    public static int numofCoins = 0;
 
 
 
