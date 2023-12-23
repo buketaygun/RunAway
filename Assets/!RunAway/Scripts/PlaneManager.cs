@@ -5,7 +5,7 @@ using UnityEngine;
 public class PlaneManager : MonoBehaviour
 {
     public GameObject[] planeArray;
-    public float zPlane = 0;
+    public float zPlane = 20;
     public float yPlane = -1.24f;
     public int planeLength = 20;
     public int planeNum = 1;
@@ -24,7 +24,7 @@ public class PlaneManager : MonoBehaviour
 
     void Update()
     {
-        if (targetPlayer.position.z - 20 > zPlane - (planeNum * planeLength))
+        if (targetPlayer.position.z -50> zPlane - (planeNum * planeLength))
         {
             AddPlane(Random.Range(0, planeArray.Length));
             RemovePlane();
@@ -40,7 +40,8 @@ public class PlaneManager : MonoBehaviour
 
     public void RemovePlane()
     {
-        Destroy(activePlaneList[0]);
+       
+        Destroy(activePlaneList[0],4f);
         activePlaneList.RemoveAt(0);
     }
 }
