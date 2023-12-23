@@ -14,17 +14,17 @@ public class PlaneManager : MonoBehaviour
 
     void Start()
     {
-        activePlaneList= new List<GameObject>();
-        for (int i=0; i < planeNum; i++)
+        activePlaneList = new List<GameObject>();
+        for (int i = 0; i < planeNum; i++)
         {
             AddPlane(Random.Range(0, planeArray.Length));
         }
     }
 
-   
+
     void Update()
     {
-        if(targetPlayer.position.z-20> zPlane - (planeNum * planeLength))
+        if (targetPlayer.position.z - 20 > zPlane - (planeNum * planeLength))
         {
             AddPlane(Random.Range(0, planeArray.Length));
             RemovePlane();
@@ -33,7 +33,7 @@ public class PlaneManager : MonoBehaviour
 
     public void AddPlane(int idx)
     {
-        GameObject plane = Instantiate(planeArray[idx], transform.forward * zPlane+ transform.up* yPlane , transform.rotation);
+        GameObject plane = Instantiate(planeArray[idx], new Vector3(0, yPlane, zPlane), transform.rotation);
         activePlaneList.Add(plane);
         zPlane += planeLength;
     }

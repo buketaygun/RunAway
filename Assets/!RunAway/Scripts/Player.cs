@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class Player : MonoBehaviour
 {
@@ -12,6 +13,7 @@ public class Player : MonoBehaviour
     public float range = 3;
     public float jumpF;
     public float gravity = -10;
+    bool alive = true;
 
 
 
@@ -78,12 +80,31 @@ public class Player : MonoBehaviour
 
     private void FixedUpdate()
     {
+        if (!alive) return;
         Vector3 move = new Vector3(0,0,forwardSpeed);
         characterController.Move(vector3 * Time.deltaTime);
 
 
 
     }
+    public void Die()
+    {
+        alive = false;
+        SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+    }
+ 
+    void ShowPanel()
+    {
 
+    }
+     void RestartGame()
+    {
+        SceneManager.LoadScene("SampLeScene");
+
+    }
+    void EndGame()
+    {
+
+    }
 
 }
