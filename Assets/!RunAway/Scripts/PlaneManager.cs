@@ -33,7 +33,7 @@ public class PlaneManager : MonoBehaviour
 
     public void AddPlane(int idx)
     {
-        GameObject plane = Instantiate(planeArray[idx], new Vector3(0, yPlane, zPlane), transform.rotation);
+        GameObject plane = Instantiate(planeArray[idx], transform.forward * zPlane + transform.up * yPlane, transform.rotation);
         activePlaneList.Add(plane);
         zPlane += planeLength;
     }
