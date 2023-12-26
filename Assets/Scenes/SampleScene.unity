@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 705507994}
-  m_IndirectSpecularColor: {r: 0.44407493, g: 0.49331808, b: 0.5724013, a: 1}
+  m_IndirectSpecularColor: {r: 0.4465788, g: 0.49641287, b: 0.5748173, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -265,6 +265,30 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 51143591663804699, guid: dfc81d1fb0e02ac49b36030c18b1052e, type: 3}
+      propertyPath: m_TagString
+      value: Obstacle
+      objectReference: {fileID: 0}
+    - target: {fileID: 211738274070933345, guid: dfc81d1fb0e02ac49b36030c18b1052e, type: 3}
+      propertyPath: m_TagString
+      value: Obstacle
+      objectReference: {fileID: 0}
+    - target: {fileID: 786527520553337294, guid: dfc81d1fb0e02ac49b36030c18b1052e, type: 3}
+      propertyPath: m_TagString
+      value: Obstacle
+      objectReference: {fileID: 0}
+    - target: {fileID: 1025608854185666287, guid: dfc81d1fb0e02ac49b36030c18b1052e, type: 3}
+      propertyPath: m_TagString
+      value: Obstacle
+      objectReference: {fileID: 0}
+    - target: {fileID: 1177352490266391046, guid: dfc81d1fb0e02ac49b36030c18b1052e, type: 3}
+      propertyPath: m_TagString
+      value: Obstacle
+      objectReference: {fileID: 0}
+    - target: {fileID: 2088316056419573421, guid: dfc81d1fb0e02ac49b36030c18b1052e, type: 3}
+      propertyPath: m_TagString
+      value: Obstacle
+      objectReference: {fileID: 0}
     - target: {fileID: 4757837901101245276, guid: dfc81d1fb0e02ac49b36030c18b1052e, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
@@ -308,6 +332,34 @@ PrefabInstance:
     - target: {fileID: 5105962209507699807, guid: dfc81d1fb0e02ac49b36030c18b1052e, type: 3}
       propertyPath: m_Name
       value: Plane
+      objectReference: {fileID: 0}
+    - target: {fileID: 5428735827043990819, guid: dfc81d1fb0e02ac49b36030c18b1052e, type: 3}
+      propertyPath: m_TagString
+      value: Obstacle
+      objectReference: {fileID: 0}
+    - target: {fileID: 5802322436215497689, guid: dfc81d1fb0e02ac49b36030c18b1052e, type: 3}
+      propertyPath: m_TagString
+      value: Obstacle
+      objectReference: {fileID: 0}
+    - target: {fileID: 6048252737843415901, guid: dfc81d1fb0e02ac49b36030c18b1052e, type: 3}
+      propertyPath: m_TagString
+      value: Obstacle
+      objectReference: {fileID: 0}
+    - target: {fileID: 6374842230323244008, guid: dfc81d1fb0e02ac49b36030c18b1052e, type: 3}
+      propertyPath: m_TagString
+      value: Obstacle
+      objectReference: {fileID: 0}
+    - target: {fileID: 6681650159431164512, guid: dfc81d1fb0e02ac49b36030c18b1052e, type: 3}
+      propertyPath: m_TagString
+      value: Obstacle
+      objectReference: {fileID: 0}
+    - target: {fileID: 7162096548179812251, guid: dfc81d1fb0e02ac49b36030c18b1052e, type: 3}
+      propertyPath: m_TagString
+      value: Obstacle
+      objectReference: {fileID: 0}
+    - target: {fileID: 8334881692933505256, guid: dfc81d1fb0e02ac49b36030c18b1052e, type: 3}
+      propertyPath: m_TagString
+      value: Obstacle
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []

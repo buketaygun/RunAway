@@ -15,7 +15,7 @@ public class GameControl : MonoBehaviour
     
     void Update()
     {
-        if (gameOver)
+        if (GameControl.gameOver == true)
         {
             Time.timeScale = 0;
             gameOverPanel.SetActive(true);

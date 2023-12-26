@@ -34,9 +34,8 @@ public class PlaneManager : MonoBehaviour
             AddPlane(Random.Range(0, planeArray.Length));
             RemovePlane();
 
-       
-
         }
+
     }
 
     public void AddPlane(int idx)
