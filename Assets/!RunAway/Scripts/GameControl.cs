@@ -12,7 +12,7 @@ public class GameControl : MonoBehaviour
         Time.timeScale = 1;
     }
 
-    // Update is called once per frame
+    
     void Update()
     {
         if (gameOver)

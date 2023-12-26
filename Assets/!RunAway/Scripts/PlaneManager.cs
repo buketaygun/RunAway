@@ -5,38 +5,47 @@ using UnityEngine;
 public class PlaneManager : MonoBehaviour
 {
     public GameObject[] planeArray;
-    public float zPlane = 20;
-    public float yPlane = -1.24f;
+    public float zPlane = 0;
+    public float yPlane = 0f;
     public int planeLength = 20;
     public int planeNum = 1;
     public Transform targetPlayer;
     public List<GameObject> activePlaneList;
+    
 
     void Start()
     {
         activePlaneList = new List<GameObject>();
+
+    
+
         for (int i = 0; i < planeNum; i++)
         {
             AddPlane(Random.Range(0, planeArray.Length));
         }
     }
-
+      
+ 
 
     void Update()
     {
-        if (targetPlayer.position.z -50> zPlane - (planeNum * planeLength))
+        if (targetPlayer.position.z > zPlane - (planeNum * planeLength))
         {
             AddPlane(Random.Range(0, planeArray.Length));
             RemovePlane();
+
+       
+
         }
     }
 
     public void AddPlane(int idx)
     {
-        GameObject plane = Instantiate(planeArray[idx], transform.forward * zPlane + transform.up * yPlane, transform.rotation);
+        GameObject plane = Instantiate(planeArray[idx], transform.forward * zPlane, transform.rotation);
         activePlaneList.Add(plane);
         zPlane += planeLength;
     }
+
 
     public void RemovePlane()
     {
