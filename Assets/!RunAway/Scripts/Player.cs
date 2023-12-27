@@ -28,6 +28,11 @@ public class Player : MonoBehaviour
         if (isFalling)
         {
             CheckObstacle();
+            if (transform.position.y <0) /* Set your threshold y-position here */
+            {
+                // Call the game over method or display a game over panel
+                GameOver();
+            }
         }
 
         // Move the player
