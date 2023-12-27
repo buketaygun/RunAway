@@ -16,6 +16,7 @@ public class PlaneManager : MonoBehaviour
     void Start()
     {
         activePlaneList = new List<GameObject>();
+       
 
     
 
@@ -52,4 +53,5 @@ public class PlaneManager : MonoBehaviour
         Destroy(activePlaneList[0],4f);
         activePlaneList.RemoveAt(0);
     }
+   
 }

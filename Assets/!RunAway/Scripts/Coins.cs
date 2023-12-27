@@ -16,8 +16,8 @@ public class Coins : MonoBehaviour
     {
         if (other.CompareTag("Player"))
         {
-            Player.numofCoins += 1;
-            Debug.Log(Player.numofCoins);
+           // Player.numofCoins += 1;
+            //Debug.Log(Player.numofCoins);
             Destroy(gameObject);
         }
     }

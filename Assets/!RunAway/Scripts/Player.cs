@@ -1,48 +1,65 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.SceneManagement;
-using UnityEngine.SocialPlatforms.Impl;
 
 public class Player : MonoBehaviour
 {
     CharacterController characterController;
-    Vector3 vector3;
-    public float forwardSpeed;
+    Vector3 velocity;
+    public float forwardSpeed = 5f;
     int line = 1;
-    public float range = 3;
-    public float jumpF;
-    public float gravity = -10;
-    public static int numofCoins = 0;
-    private int score = 0;
+    public float range = 3f;
+    public float jumpForce = 8f;
+    public float gravity = -10f;
     private bool isFalling = false;
-    
+
     void Start()
     {
         characterController = GetComponent<CharacterController>();
-        vector3 = transform.position;
+        velocity = Vector3.zero;
     }
 
     void Update()
     {
-        vector3.z = forwardSpeed;
+        // Handle input and movement
+        HandleInput();
 
+        // Check for obstacles if falling
+        if (isFalling)
+        {
+            CheckObstacle();
+        }
+
+        // Move the player
+        characterController.Move(velocity * Time.deltaTime);
+    }
+
+    void HandleInput()
+    {
+        // Set the forward movement
+        velocity.z = forwardSpeed;
+
+        // Jumping
         if (characterController.isGrounded)
         {
-            vector3.y = -1;
-            isFalling = false;
+            velocity.y = -1;
 
             if (Input.GetKeyDown(KeyCode.UpArrow))
             {
-                vector3.y = jumpF;
+                velocity.y = jumpForce;
             }
         }
         else
         {
-            vector3.y += gravity * Time.deltaTime;
+            velocity.y += gravity * Time.deltaTime;
             isFalling = true;
         }
 
+        // Horizontal movement (left and right)
+        float horizontalInput = Input.GetAxis("Horizontal");
+        velocity.x = horizontalInput * forwardSpeed;
+
+        // Line movement
         if (Input.GetKeyDown(KeyCode.RightArrow))
         {
             line++;
@@ -61,79 +78,38 @@ public class Player : MonoBehaviour
             }
         }
 
-        Vector3 targetLine = transform.position.z * transform.forward + transform.position.y * transform.up;
+        // Directly set the target line position
+        float targetLineZ = line * range;
 
-        if (line == 0)
-        {
-            targetLine += Vector3.left * range;
-        }
-        else if (line == 2)
-        {
-            targetLine += Vector3.right * range;
-        }
+        // Update the position after moving the player to prevent falling off
+        transform.position = new Vector3(transform.position.x, transform.position.y, targetLineZ);
 
-        transform.position = targetLine;
+        // Move the player based on velocity
+        characterController.Move(velocity * Time.deltaTime);
     }
 
-    private void FixedUpdate()
-    {
-        Vector3 move = new Vector3(0, 0, forwardSpeed);
-        characterController.Move(vector3 * Time.deltaTime);
 
-        if (isFalling)
-        {
-            CheckObstacle();
-        }
-    
-    }
-
-    /* private void OnControllerColliderHit(ControllerColliderHit colliderHit)
-     {
-         if (colliderHit.transform.tag == "Obstacle")
-         {
-             Debug.Log("Girdi");
-             GameOver();
-         }
-     }*/
-
-    private void CheckObstacle()
+    void CheckObstacle()
     {
         RaycastHit hit;
         if (Physics.Raycast(transform.position, Vector3.down, out hit, characterController.height / 2 + 0.1f))
         {
             if (hit.collider.CompareTag("Obstacle"))
             {
-                Debug.Log("Girdi11111");
+                Debug.Log("Hit an obstacle!");
                 GameOver();
             }
         }
-
     }
-
-    private void OnControllerColliderHit(ControllerColliderHit colliderHit)
-    {
-      
-
-        if (!isFalling && colliderHit.collider.CompareTag("Obstacle"))
-        {
-
-            Debug.Log("Collider Hit: " + colliderHit.collider.name);
-            Debug.Log("Collider Tag: " + colliderHit.collider.tag);
-            Debug.Log("Hit Point Y: " + colliderHit.point.y);
-
-            Debug.Log("Girdi");
-            GameOver();
-        }
-    }
-
-
 
     void GameOver()
     {
+        // Add your game over logic here
         GameControl.gameOver = true;
         Debug.Log("Game Over!");
-
     }
-
- 
 }
+
+
+
+
