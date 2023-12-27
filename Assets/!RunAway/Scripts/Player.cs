@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using UnityEngine.SocialPlatforms.Impl;
 
 public class Player : MonoBehaviour
 {
@@ -13,7 +14,9 @@ public class Player : MonoBehaviour
     public float jumpF;
     public float gravity = -10;
     public static int numofCoins = 0;
-
+    private int score = 0;
+    private bool isFalling = false;
+    
     void Start()
     {
         characterController = GetComponent<CharacterController>();
@@ -27,6 +30,7 @@ public class Player : MonoBehaviour
         if (characterController.isGrounded)
         {
             vector3.y = -1;
+            isFalling = false;
 
             if (Input.GetKeyDown(KeyCode.UpArrow))
             {
@@ -36,6 +40,7 @@ public class Player : MonoBehaviour
         else
         {
             vector3.y += gravity * Time.deltaTime;
+            isFalling = true;
         }
 
         if (Input.GetKeyDown(KeyCode.RightArrow))
@@ -74,15 +79,54 @@ public class Player : MonoBehaviour
     {
         Vector3 move = new Vector3(0, 0, forwardSpeed);
         characterController.Move(vector3 * Time.deltaTime);
+
+        if (isFalling)
+        {
+            CheckObstacle();
+        }
+    
+    }
+
+    /* private void OnControllerColliderHit(ControllerColliderHit colliderHit)
+     {
+         if (colliderHit.transform.tag == "Obstacle")
+         {
+             Debug.Log("Girdi");
+             GameOver();
+         }
+     }*/
+
+    private void CheckObstacle()
+    {
+        RaycastHit hit;
+        if (Physics.Raycast(transform.position, Vector3.down, out hit, characterController.height / 2 + 0.1f))
+        {
+            if (hit.collider.CompareTag("Obstacle"))
+            {
+                Debug.Log("Girdi11111");
+                GameOver();
+            }
+        }
+
     }
 
     private void OnControllerColliderHit(ControllerColliderHit colliderHit)
     {
-        if (colliderHit.transform.tag == "Obstacle")
+      
+
+        if (!isFalling && colliderHit.collider.CompareTag("Obstacle"))
         {
+
+            Debug.Log("Collider Hit: " + colliderHit.collider.name);
+            Debug.Log("Collider Tag: " + colliderHit.collider.tag);
+            Debug.Log("Hit Point Y: " + colliderHit.point.y);
+
+            Debug.Log("Girdi");
             GameOver();
         }
     }
+
+
 
     void GameOver()
     {
@@ -90,4 +134,6 @@ public class Player : MonoBehaviour
         Debug.Log("Game Over!");
 
     }
+
+ 
 }

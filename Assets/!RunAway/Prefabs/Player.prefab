@@ -16,7 +16,7 @@ GameObject:
   - component: {fileID: 6563588847534458580}
   m_Layer: 0
   m_Name: Player
-  m_TagString: Untagged
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -148,6 +148,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   forwardSpeed: 10
-  range: 3
+  range: 7
   jumpF: 10
   gravity: -15
