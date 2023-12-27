@@ -30,7 +30,7 @@ public class PlaneManager : MonoBehaviour
 
     void Update()
     {
-        if (targetPlayer.position.z > zPlane - (planeNum * planeLength))
+        if (targetPlayer.position.z -60> zPlane - (planeNum * planeLength))
         {
             AddPlane(Random.Range(0, planeArray.Length));
             RemovePlane();

@@ -21,30 +21,29 @@ public class Player : MonoBehaviour
 
     void Update()
     {
-        // Handle input and movement
+     
         HandleInput();
 
-        // Check for obstacles if falling
+    
         if (isFalling)
         {
             CheckObstacle();
-            if (transform.position.y <0) /* Set your threshold y-position here */
+            if (transform.position.y <0) 
             {
-                // Call the game over method or display a game over panel
+
                 GameOver();
             }
         }
 
-        // Move the player
+
         characterController.Move(velocity * Time.deltaTime);
     }
 
     void HandleInput()
     {
-        // Set the forward movement
+
         velocity.z = forwardSpeed;
 
-        // Jumping
         if (characterController.isGrounded)
         {
             velocity.y = -1;
@@ -60,11 +59,11 @@ public class Player : MonoBehaviour
             isFalling = true;
         }
 
-        // Horizontal movement (left and right)
+    
         float horizontalInput = Input.GetAxis("Horizontal");
         velocity.x = horizontalInput * forwardSpeed;
 
-        // Line movement
+
         if (Input.GetKeyDown(KeyCode.RightArrow))
         {
             line++;
@@ -83,13 +82,11 @@ public class Player : MonoBehaviour
             }
         }
 
-        // Directly set the target line position
         float targetLineZ = line * range;
 
-        // Update the position after moving the player to prevent falling off
         transform.position = new Vector3(transform.position.x, transform.position.y, targetLineZ);
 
-        // Move the player based on velocity
+
         characterController.Move(velocity * Time.deltaTime);
     }
 
@@ -104,12 +101,21 @@ public class Player : MonoBehaviour
                 Debug.Log("Hit an obstacle!");
                 GameOver();
             }
+            else if (hit.collider.CompareTag("Coin"))
+            {
+
+                Destroy(hit.collider.gameObject);
+            }
         }
+        
+        
+          
+        
     }
 
     void GameOver()
     {
-        // Add your game over logic here
+
         GameControl.gameOver = true;
         Debug.Log("Game Over!");
     }
